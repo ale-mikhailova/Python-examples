@@ -1,0 +1,22 @@
+'''To calculate and forecast the population of the Earth , S. P. Kapitsa proposed the following formula:
+N = (172/45)*(math.pi/2 - math.atan((T1-t)/T))
+
+where:
+t is the year for which the population is calculated;
+C - 172 billion people·years;
+T1 - 2000
+T - 45 years'''
+
+import math
+
+def population_in_year(t):
+    N = (172/45)*(math.pi/2 - math.atan((2000-t)/45))
+    return N
+
+s = input().split()
+year_list = [int(x) for x in s]
+
+population_list = [population_in_year(t) for t in year_list]
+
+for i in range(len(year_list)):
+   print (f'{year_list[i] : 5d} - {population_list[i] : 6.3f} миллиард(ов)')
