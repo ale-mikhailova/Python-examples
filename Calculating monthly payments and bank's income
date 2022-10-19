@@ -1,0 +1,24 @@
+'''Calculate the monthly loan payment amount when using differentiated payments 
+(in this case, the monthly loan repayment payment gradually decreases by the end of the loan period). 
+The loan amount is s rubles, the loan term is n months, the percentage is k%.
+Calculate payments for each month and the bank's income (the difference between the total payment and the loan amount).'''
+
+def monthly_payment(t, s, n, k):
+    p = (s/n) + (s-(t-1)*(s/n))*k/1200
+    return p
+
+s = int(input())
+n = int(input())
+k = int(input())
+
+m_list = [t for t in range(1, n+1)]
+p_list = [monthly_payment(t, s, n, k) for t in m_list]
+
+dohod = 0
+for j in p_list:
+  dohod += j
+
+for i in range(len(m_list)):
+     print("%2d month - %8.2f RUB" % (m_list[i], p_list[i]))
+
+print('Bank's income -', dohod-s)
