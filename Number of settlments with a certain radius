@@ -1,0 +1,34 @@
+'''Given is n localities, each of which in some relative coordinate system has two coordinates x and y. 
+A radio station with a range of r km is installed at the point with the number (index) k. 
+Determine how many localities fall within its radius (including locality k).
+
+Input data:
+
+- a list of the settlementscoordinates on the OX axis;
+- a list of the settlementscoordinates on the OY axis;
+- the number (index) of the locality k (an integer in the range from 0 to n-1);
+- the range of the radio station r.
+
+Output data:
+- the number of settlements that are within the range of the radio station.'''
+
+import math
+
+os_x = [int(i) for i in input().split()]
+os_y = [int(j) for j in input().split()]
+k = int(input())
+r = int(input())
+k_l = []
+k_l.append(os_x[k])
+k_l.append(os_y[k])
+
+r_multiple = []
+for i, j in zip(os_x, os_y):
+  r_multiple.append(round(math.sqrt((k_l[0] - i) ** 2 + (k_l[1] - j) ** 2)))
+
+counter = 0
+for i in r_multiple:
+  if i < r:
+    counter+=1
+
+print(counter)
