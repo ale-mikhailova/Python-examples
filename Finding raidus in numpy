@@ -1,0 +1,27 @@
+'''Given n points. Find the centre and the minimum radius of the circle where all these points will be found.
+
+Input data:
+- the number of points is n (integer);
+- n lines, each with the coordinates of the point (float).
+
+Output data:
+coordinates of the centre of the circle;
+radius.'''
+
+
+
+import numpy as np
+
+coordinates_list = []
+n = int(input())
+for i in range(n):
+  coordinates = input().split()
+  coordinates_list.append(coordinates)
+points = np.array(coordinates_list, dtype=float)
+
+centre = np.mean(points, 0)
+centre_x = centre[0]
+centre_y = centre[1]
+
+len = np.sqrt((points[:,0] - centre_x)**2 + (points[:,1] - centre_y) ** 2)
+print("centre is - (%6.3f, %6.3f), r = %6.3f" % (centre_x, centre_y, len.max())) 
